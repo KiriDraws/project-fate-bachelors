@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://csj5ipvyruf3k"]
+
+[ext_resource type="Texture2D" uid="uid://ttfmygav4w8u" path="res://Assets/SGQ_Dungeon/items/sword_item.png" id="1_6xjxx"]
+[ext_resource type="Script" path="res://Scripts/GUI/Inventory/ItemData.gd" id="2_b6sxy"]
+
+[resource]
+script = ExtResource("2_b6sxy")
+item_type = 0
+item_name = "Default Sword"
+item_damage = 2
+item_health = 0
+item_rarity = 1
+item_description = "Basic Weapon, Regular Damage, Regular Attack Speed"
+item_texture = ExtResource("1_6xjxx")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://ypresi5r5kb4"]
+
+[ext_resource type="Texture2D" uid="uid://gds8va0vk8dn" path="res://Assets/SGQ_Dungeon/items/coin_item.png" id="1_6dqco"]
+[ext_resource type="Script" path="res://Scripts/GUI/Inventory/ItemData.gd" id="2_h6q10"]
+
+[resource]
+script = ExtResource("2_h6q10")
+item_type = 1
+item_name = "Coin"
+item_damage = 0
+item_health = 0
+item_rarity = 0
+item_description = ""
+item_texture = ExtResource("1_6dqco")

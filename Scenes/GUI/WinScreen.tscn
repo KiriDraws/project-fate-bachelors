@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwi8i4lqcegey"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/WinScreen.gd" id="1_l5xs3"]
+
+[node name="WinScreen" type="CanvasLayer"]
+process_mode = 2
+layer = 3
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+follow_viewport_scale = 2.0
+script = ExtResource("1_l5xs3")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 272.0
+offset_bottom = 144.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 10.0
+offset_right = 208.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 16
+text = "You won!
+High score:
+"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 98.0
+offset_right = 192.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 16
+text = "Play again"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

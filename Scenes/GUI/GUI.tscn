@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpllovs34uorm"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/GUI.gd" id="1_va5bc"]
+[ext_resource type="PackedScene" uid="uid://uuu6odhbflpm" path="res://Scenes/GUI/Inventory.tscn" id="2_xefph"]
+[ext_resource type="PackedScene" uid="uid://iudxjd4f6le1" path="res://Scenes/GUI/Shop.tscn" id="4_fcc8l"]
+
+[node name="GUI" type="CanvasLayer"]
+process_mode = 3
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+script = ExtResource("1_va5bc")
+
+[node name="HP_Bar" type="ProgressBar" parent="."]
+offset_left = 16.0
+offset_top = 6.0
+offset_right = 80.0
+offset_bottom = 12.0
+max_value = 10.0
+step = 1.0
+show_percentage = false
+
+[node name="Inventory" parent="." instance=ExtResource("2_xefph")]
+offset_left = 248.0
+offset_top = 120.0
+offset_right = 272.0
+offset_bottom = 144.0
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="Panel" parent="Container"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 224.0
+offset_bottom = 144.0
+
+[node name="Stats" type="Control" parent="Container"]
+anchors_preset = 0
+offset_left = 80.0
+offset_top = 32.0
+offset_right = 208.0
+offset_bottom = 128.0
+
+[node name="Label" type="Label" parent="Container/Stats"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 138.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 8
+text = "test text
+test"
+
+[node name="Shop" parent="." instance=ExtResource("4_fcc8l")]

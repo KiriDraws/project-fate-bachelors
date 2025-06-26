@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://4vq8jyy0k2l0"]
+
+[ext_resource type="Texture2D" uid="uid://c877kgbs0hlj0" path="res://Assets/SGQ_Dungeon/items/pickaxe_item.png" id="1_7pxe5"]
+[ext_resource type="Script" path="res://Scripts/GUI/Inventory/ItemData.gd" id="2_w8x15"]
+
+[resource]
+script = ExtResource("2_w8x15")
+item_type = 0
+item_name = "Pickaxe"
+item_damage = 3
+item_health = 0
+item_rarity = 1
+item_description = "Basic Weapon, Higher Damage, Slower Attack Speed"
+item_texture = ExtResource("1_7pxe5")

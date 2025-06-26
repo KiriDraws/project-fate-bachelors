@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://8kew1mhydsy8"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/ShopItem.gd" id="1_x718w"]
+[ext_resource type="Texture2D" uid="uid://ttfmygav4w8u" path="res://Assets/SGQ_Dungeon/items/sword_item.png" id="1_xemyq"]
+
+[node name="ShopItem" type="Panel"]
+offset_right = 24.0
+offset_bottom = 24.0
+script = ExtResource("1_x718w")
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+position = Vector2(12, 12)
+texture = ExtResource("1_xemyq")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

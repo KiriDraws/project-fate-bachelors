@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://dq0mg3wbn5cpj"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Inventory/ItemObject.gd" id="1_mgwk7"]
+[ext_resource type="Texture2D" uid="uid://ttfmygav4w8u" path="res://Assets/SGQ_Dungeon/items/sword_item.png" id="2_pfap3"]
+[ext_resource type="Texture2D" uid="uid://c877kgbs0hlj0" path="res://Assets/SGQ_Dungeon/items/pickaxe_item.png" id="4_f1hsc"]
+[ext_resource type="Texture2D" uid="uid://dugsmnpurkcha" path="res://Assets/SGQ_Dungeon/items/bow_item.png" id="5_1gpfa"]
+[ext_resource type="Texture2D" uid="uid://dyklfckbpri7r" path="res://Assets/SGQ_Dungeon/items/half_heart_item.png" id="6_m28x5"]
+[ext_resource type="Texture2D" uid="uid://bborv86q2p2xl" path="res://Assets/SGQ_Dungeon/items/full_heart_item.png" id="7_e2a04"]
+[ext_resource type="Texture2D" uid="uid://gds8va0vk8dn" path="res://Assets/SGQ_Dungeon/items/coin_item.png" id="8_kke4a"]
+[ext_resource type="Texture2D" uid="uid://bulcq47ahoxc3" path="res://Assets/SGQ_Dungeon/items/key_item.png" id="9_yrkyk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjmgv"]
+size = Vector2(16, 16)
+
+[node name="ItemObject" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_mgwk7")
+
+[node name="Sword" type="Sprite2D" parent="."]
+texture = ExtResource("2_pfap3")
+
+[node name="Pickaxe" type="Sprite2D" parent="."]
+texture = ExtResource("4_f1hsc")
+
+[node name="Bow" type="Sprite2D" parent="."]
+texture = ExtResource("5_1gpfa")
+
+[node name="HalfHeart" type="Sprite2D" parent="."]
+texture = ExtResource("6_m28x5")
+
+[node name="FullHeart" type="Sprite2D" parent="."]
+texture = ExtResource("7_e2a04")
+
+[node name="Gold" type="Sprite2D" parent="."]
+texture = ExtResource("8_kke4a")
+
+[node name="Key" type="Sprite2D" parent="."]
+texture = ExtResource("9_yrkyk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rjmgv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

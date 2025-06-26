@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dnm6prkly8ry"]
+
+[ext_resource type="Texture2D" uid="uid://bborv86q2p2xl" path="res://Assets/SGQ_Dungeon/items/full_heart_item.png" id="1_1kdm5"]
+[ext_resource type="Script" path="res://Scripts/GUI/Inventory/ItemData.gd" id="2_8rdeb"]
+
+[resource]
+script = ExtResource("2_8rdeb")
+item_type = 3
+item_name = "Full Heart"
+item_damage = 0
+item_health = 2
+item_rarity = 0
+item_description = ""
+item_texture = ExtResource("1_1kdm5")

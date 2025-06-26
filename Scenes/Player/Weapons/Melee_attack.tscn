@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhtnfnmy0hc55"]
+
+[ext_resource type="Texture2D" uid="uid://cxj845ht0rfk8" path="res://Assets/Chars/attack player.png" id="1_ws57u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msf5y"]
+size = Vector2(16, 16)
+
+[node name="Node2D" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -9)
+texture = ExtResource("1_ws57u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_msf5y")

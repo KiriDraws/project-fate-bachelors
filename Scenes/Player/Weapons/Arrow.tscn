@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://r72gpmukfoad"]
+
+[ext_resource type="Texture2D" uid="uid://b0as6jpdxg3v7" path="res://Assets/SGQ_Dungeon/weapons_and_projectiles/projectiles_animated.png" id="1_56ccl"]
+[ext_resource type="Script" path="res://Scripts/Player/Arrow.gd" id="1_oo2mj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boxlx"]
+size = Vector2(11, 3)
+
+[sub_resource type="Animation" id="Animation_gwhwo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_evi6e"]
+resource_name = "shoot"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_skhom"]
+_data = {
+"RESET": SubResource("Animation_gwhwo"),
+"shoot": SubResource("Animation_evi6e")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yu0qc"]
+size = Vector2(5, 15)
+
+[node name="Arrow" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_oo2mj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 4.71239
+texture = ExtResource("1_56ccl")
+hframes = 8
+vframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_boxlx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_skhom")
+}
+autoplay = "shoot"
+
+[node name="damage_detector" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_detector"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_yu0qc")
+
+[node name="Life" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="damage_detector" to="." method="_on_damage_detector_body_entered"]
+[connection signal="timeout" from="Life" to="." method="_on_life_timeout"]

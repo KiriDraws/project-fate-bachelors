@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://dkrdef4oy6uh2"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/AI Boss/Energy.gd" id="1_pmkrc"]
+[ext_resource type="Texture2D" uid="uid://b0as6jpdxg3v7" path="res://Assets/SGQ_Dungeon/weapons_and_projectiles/projectiles_animated.png" id="1_rpc1i"]
+
+[sub_resource type="Animation" id="Animation_gwhwo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_evi6e"]
+resource_name = "shoot"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [16, 17, 18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_skhom"]
+_data = {
+"RESET": SubResource("Animation_gwhwo"),
+"shoot": SubResource("Animation_evi6e")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2rj7q"]
+size = Vector2(7, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0aj7"]
+size = Vector2(9, 7)
+
+[node name="Energy" type="CharacterBody2D"]
+position = Vector2(-3, -1)
+scale = Vector2(0.3, 0.3)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_pmkrc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 2)
+rotation = 4.71239
+texture = ExtResource("1_rpc1i")
+hframes = 8
+vframes = 6
+frame = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_skhom")
+}
+autoplay = "shoot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 0.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_2rj7q")
+
+[node name="damage_detector" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_detector"]
+position = Vector2(2.5, 0.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_u0aj7")
+
+[node name="Life" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="damage_detector" to="." method="_on_damage_detector_body_entered"]
+[connection signal="timeout" from="Life" to="." method="_on_life_timeout"]

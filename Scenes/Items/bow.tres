@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bwoc2d4xff6xe"]
+
+[ext_resource type="Texture2D" uid="uid://dugsmnpurkcha" path="res://Assets/SGQ_Dungeon/items/bow_item.png" id="1_2omtn"]
+[ext_resource type="Script" path="res://Scripts/GUI/Inventory/ItemData.gd" id="2_45haa"]
+
+[resource]
+script = ExtResource("2_45haa")
+item_type = 0
+item_name = "Bow"
+item_damage = 1
+item_health = 0
+item_rarity = 1
+item_description = "Ranged Weapon, Weak Damage, High Attack Speed"
+item_texture = ExtResource("1_2omtn")

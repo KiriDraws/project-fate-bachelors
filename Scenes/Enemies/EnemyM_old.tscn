@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://jb6tf6g0s2yq"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/AI Melee/EnemyM.gd" id="1_kditl"]
+[ext_resource type="Script" path="res://Scripts/Enemies/State Machine/StateMachine.gd" id="2_0rhc5"]
+[ext_resource type="Texture2D" uid="uid://copqy1c78p4vb" path="res://Assets/Chars/enemy_1_ph.png" id="3_b2khg"]
+[ext_resource type="PackedScene" uid="uid://duj7vnja1sbo7" path="res://Scenes/Enemies/Melee_attack_enemy.tscn" id="4_t333i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5o4b"]
+size = Vector2(15, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eelx2"]
+radius = 38.0132
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vg3ti"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jj6qd"]
+
+[node name="Enemy1" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_kditl")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_0rhc5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_b2khg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_m5o4b")
+
+[node name="chase_detection" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="chase_detection"]
+shape = SubResource("CircleShape2D_eelx2")
+
+[node name="attack_detection" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_detection"]
+shape = SubResource("CircleShape2D_vg3ti")
+
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="EnemyWeapon" parent="Attack" instance=ExtResource("4_t333i")]
+position = Vector2(20, 9)
+
+[node name="hit_timer" type="Timer" parent="."]
+
+[node name="attack_cast" type="ShapeCast2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_jj6qd")
+exclude_parent = false
+target_position = Vector2(0, 0)
+max_results = 1
+collision_mask = 2
+
+[connection signal="body_entered" from="chase_detection" to="." method="_on_chase_detection_body_entered"]
+[connection signal="body_exited" from="chase_detection" to="." method="_on_chase_detection_body_exited"]
+[connection signal="body_entered" from="attack_detection" to="." method="_on_attack_detection_body_entered"]
+[connection signal="body_exited" from="attack_detection" to="." method="_on_attack_detection_body_exited"]
+[connection signal="body_entered" from="Attack/EnemyWeapon" to="." method="_on_node_2d_body_entered"]
+[connection signal="body_entered" from="Attack/EnemyWeapon" to="." method="_on_enemy_weapon_body_entered"]
+[connection signal="timeout" from="hit_timer" to="." method="_on_hit_timer_timeout"]

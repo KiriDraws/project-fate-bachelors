@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://uuu6odhbflpm"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/Inventory/InventoryUI.gd" id="1_pwctk"]
+[ext_resource type="Texture2D" uid="uid://ttfmygav4w8u" path="res://Assets/SGQ_Dungeon/items/sword_item.png" id="2_q8n3t"]
+[ext_resource type="Script" path="res://Scripts/GUI/Inventory/InventoryItem.gd" id="3_3ak37"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 24.0
+offset_bottom = 24.0
+script = ExtResource("1_pwctk")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 22.0
+offset_bottom = 22.0
+texture = ExtResource("2_q8n3t")
+script = ExtResource("3_3ak37")
